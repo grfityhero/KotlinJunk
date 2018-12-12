@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_weight="2"
+              android:baselineAligned="false"
+              android:layoutDirection="ltr"
+              android:orientation="horizontal">
+
+    <fragment
+            android:id="@+id/fragment"
+            android:name="com.elimalki.mykotlinapptest.MainActivityFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layoutDirection="ltr"
+            tools:layout="@layout/fragment_main_activity" />
+
+    <FrameLayout
+            android:id="@+id/task_detalis_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layoutDirection="ltr">
+
+    </FrameLayout>
+
+</LinearLayout>

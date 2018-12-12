@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/content_add_edit"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="left|start"
+              android:orientation="vertical"
+              android:paddingTop="10dp"
+              tools:context=".AddEDitActivityFragment">
+
+    <EditText
+            android:id="@+id/addedit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:gravity="left"
+            android:hint="@string/edit_task_name"
+            android:importantForAutofill="no"
+            android:inputType="none|textNoSuggestions"
+            android:maxLength="64"
+            android:padding="5dp"
+            tools:targetApi="o" />
+
+    <EditText
+            android:id="@+id/addedit_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:gravity="left"
+            android:hint="@string/edit_description"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:maxLength="256"
+            android:padding="5dp"
+            tools:targetApi="o" />
+
+    <EditText
+            android:id="@+id/addedit_sortorder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="left"
+            android:hint="@string/sort_order"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:maxLength="9"
+            android:padding="5dp"
+            tools:targetApi="o" />
+
+    <Button
+            android:id="@+id/addedit_save"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:drawableStart="@android:drawable/ic_menu_save"
+            android:drawableLeft="@android:drawable/ic_menu_save"
+            android:gravity="left|start"
+            android:text="@string/save"
+            android:textSize="20sp" />
+
+</LinearLayout>
+

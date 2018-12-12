@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".MainActivityFragment"
+              android:id="@+id/fragment_main_activity"
+              android:orientation="vertical">
+
+
+    <TextView
+            android:text="NO TASK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/current_task"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_margin="5dp"/>
+
+    <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="8dp"
+            android:id="@+id/rv_tasks_list"/>
+</LinearLayout>
