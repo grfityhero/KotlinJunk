@@ -19,6 +19,7 @@ import java.security.InvalidParameterException
 
 
 class MainActivityFragment : Fragment(), OnTaskClickListener, LoaderManager.LoaderCallbacks<Cursor> {
+   // lateinit var btnTest:Button
  lateinit var  mactivity: Context
     val LOADER_ID: Int = 0
     var mListener :OnTaskClickListener? = null
@@ -27,6 +28,8 @@ class MainActivityFragment : Fragment(), OnTaskClickListener, LoaderManager.Load
     private val TAG = "MainActivityFragment"
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
+
+
         Log.d(TAG, "onCreateLoader: ")
         val projection = arrayOf<String>(
             TaskContract.Columns._ID,
@@ -48,6 +51,8 @@ class MainActivityFragment : Fragment(), OnTaskClickListener, LoaderManager.Load
             }
         }
     }
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

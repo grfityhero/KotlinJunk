@@ -41,8 +41,8 @@ class AppProvider : ContentProvider() {
 
         match.addURI(CONTENT_AUTHORITY, TaskContract().TABLE_NAME, TASKS)
         match.addURI(CONTENT_AUTHORITY, TaskContract().TABLE_NAME + "/#", TASKS_ID)
-        match.addURI(CONTENT_AUTHORITY, TaskContract().TABLE_NAME, TIMINGS)
-        match.addURI(CONTENT_AUTHORITY, TaskContract().TABLE_NAME + "/#", TIMINGS_ID)
+        match.addURI(CONTENT_AUTHORITY, TimingsContract().TABLE_NAME, TIMINGS)
+        match.addURI(CONTENT_AUTHORITY, TimingsContract().TABLE_NAME + "/#", TIMINGS_ID)
 //        match.addURI(CONTENT_AUTHORITY, TaskContract().TABLE_NAME, DURATIONS)
 //        match.addURI(CONTENT_AUTHORITY, TaskContract().TABLE_NAME + "/#", DURATIONS_ID)
         Log.d(TAG, "buildUriMatcher: done")
@@ -58,10 +58,17 @@ class AppProvider : ContentProvider() {
     ): Cursor {
 
         Log.d(TAG, "fun query")
+       //test
+//        val uriMatcher2 =UriMatcherTest
+//        val reurnedMActher =   uriMatcher2.buildUriMatcher()
+//        val matcher2: Int =  reurnedMActher.match(uri)
+
+
         val matcher: Int = mUriMatcher.match(uri)
+
         val queryBuilder = SQLiteQueryBuilder()
         val tskId: Long
-        //match = 100
+
 
         when (matcher) {
             TASKS -> queryBuilder.tables = TaskContract().TABLE_NAME
@@ -94,7 +101,7 @@ class AppProvider : ContentProvider() {
             db.query(TaskContract().TABLE_NAME, projection, selection, selectionArgs, null, null, null, null)
         Log.d(TAG, "query Uri: " + uri)
 
-
+        cursor.setNotificationUri(context!!.contentResolver, uri)
         return cursor
     }
 
@@ -162,7 +169,7 @@ class AppProvider : ContentProvider() {
                 if (TextUtils.isEmpty(selection)) {
 
                     rowsUpdated = db.update(
-                        TimingsContract().TABLE_NAME,
+                        TaskContract().TABLE_NAME,
                         values,
                         TaskContract.Columns._ID + "=" + id, null
                     )
@@ -180,7 +187,12 @@ class AppProvider : ContentProvider() {
             }
             else -> throw IllegalArgumentException("Unknown URI: " + uri)
         }
-        context.contentResolver.notifyChange(uri, null)
+        if (rowsUpdated > 0) {
+            //somthing updated
+            Log.d(TAG, "update: notifyChange")
+            context!!.contentResolver.notifyChange(uri, null)
+        }
+      //  context.contentResolver.notifyChange(uri, null)
         return rowsUpdated
     }
 

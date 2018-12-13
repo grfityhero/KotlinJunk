@@ -8,7 +8,7 @@ import android.provider.BaseColumns
  *Created by Eli Malki on 10/12/2018
  *
  */
- class TimingsContract(public val TABLE_NAME : String = "Timings") {
+ class TimingsContract( val TABLE_NAME : String = "Timings") {
 
     fun buildTimingUri(TimingId: Long): Uri {
         return ContentUris.withAppendedId( AppProvider.CONTENT_URI, TimingId)
