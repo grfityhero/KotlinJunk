@@ -4,15 +4,45 @@ package com.elimalki.mykotlinapptest
 import android.content.res.Configuration
 import android.database.Cursor
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 
-class MainActivity : AppCompatActivity(),OnTaskClickListener {
+class MainActivity() : AppCompatActivity(),OnTaskClickListener , AddEDitActivityFragment.OnSavedClicked {
+    override fun OnSavedClicked() {
+        Log.d(TAG, "OnSavedClicked: ")
+        //OnSavedClicked (interface) was clicked in AddEditActivity lone 183
+        //so removing the edit fragment and hiding the  container frame:
+
+        val fragmentManager = supportFragmentManager
+        val fragment = fragmentManager.findFragmentById(R.id.task_detalis_container)
+        if (fragment != null) {
+            supportFragmentManager.beginTransaction().remove(fragment).commit()
+        }
+        Log.d(TAG, "OnSavedClicked: edit fragment removed. ")
+
+
+        val addEditLayout:View = findViewById(R.id.task_detalis_container)
+        val mainFragment:View  = findViewById(R.id.fragment)
+
+        if (!mTwoPaneMode) {
+            //we've just remove the editing fragment ,so hide the frame.
+            addEditLayout.setVisibility(View.GONE)
+            mainFragment.setVisibility(View.VISIBLE)
+            Log.d(TAG, "OnSavedClicked: hiding task_detalis_container  GONE")
+        }
+    }
 
 
     var mTwoPaneMode: Boolean = false
     private val TAG = "MainActivity"
+
+    constructor(parcel: Parcel) : this() {
+        mTwoPaneMode = parcel.readByte() != 0.toByte()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d(TAG, "onCreate: ")
         super.onCreate(savedInstanceState)
@@ -176,6 +206,19 @@ class MainActivity : AppCompatActivity(),OnTaskClickListener {
 //            Log.d(TAG, "===================================" + mCursor!!.getCount())
 //        }
 
+    }
+
+
+
+
+    companion object CREATOR : Parcelable.Creator<MainActivity> {
+        override fun createFromParcel(parcel: Parcel): MainActivity {
+            return MainActivity(parcel)
+        }
+
+        override fun newArray(size: Int): Array<MainActivity?> {
+            return arrayOfNulls(size)
+        }
     }
 }
 

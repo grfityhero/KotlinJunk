@@ -1,8 +1,10 @@
 package com.elimalki.mykotlinapptest
 
 import android.content.ContentValues
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +31,7 @@ class AddEDitActivityFragment : Fragment() {
     lateinit private var mSaveButton: Button
     private var mSaveListener: OnSavedClicked? = null
 
-    internal interface OnSavedClicked {
+     interface OnSavedClicked {
         fun OnSavedClicked()
 
     }
@@ -129,6 +131,34 @@ class AddEDitActivityFragment : Fragment() {
         }
 
         return view
+
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        //activities containing this fragment must implement its callbacks
+        val activity = activity
+        if (activity !is OnSavedClicked) {
+            if (activity != null) {
+                throw ClassCastException("ERROR:" + activity.javaClass.simpleName + " must implement OnSavedClicked")
+            }
+        }
+        mSaveListener = activity as OnSavedClicked?
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        val actionBar = (activity as AppCompatActivity).supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+    override fun onDetach() {
+        Log.d(TAG, "onDetach: ")
+        super.onDetach()
+        mSaveListener = null
+        val actionBar = (activity as AppCompatActivity).supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(false)
 
     }
 }

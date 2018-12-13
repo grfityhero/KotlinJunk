@@ -18,10 +18,10 @@ import android.util.Log
 
 class AppProvider : ContentProvider() {
     companion object {
-        const val TASKS: Int = 1
-        const val TASKS_ID: Int = 2
-        const val TIMINGS: Int = 3
-        const val TIMINGS_ID: Int = 4
+        const val TASKS: Int = 100
+        const val TASKS_ID: Int = 101
+        const val TIMINGS: Int = 200
+        const val TIMINGS_ID: Int = 201
 //        const val DURATIONS: Int = 5
 //        const val DURATIONS_ID: Int = 6
         const val CONTENT_AUTHORITY: String = "com.elimalki.mykotlinapptest.provider"
