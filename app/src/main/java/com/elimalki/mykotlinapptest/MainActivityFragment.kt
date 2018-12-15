@@ -39,11 +39,11 @@ class MainActivityFragment : Fragment(), OnTaskClickListener, LoaderManager.Load
         )
         val sortOrder: String = TaskContract.Columns.TASKS_NAME
 
-        context.let {
+        context?.let {
             when (id) {
                 LOADER_ID -> {
 //               return CursorLoader(activity!!,  CONTENT_URI, projection, null, null, sortOrder)
-                    return CursorLoader(context!!, AppProvider.CONTENT_URI, projection, null, null, sortOrder)
+                    return CursorLoader(it, AppProvider.CONTENT_URI, projection, null, null, sortOrder)
                 }
 
                 else ->
@@ -65,7 +65,7 @@ class MainActivityFragment : Fragment(), OnTaskClickListener, LoaderManager.Load
         Log.d(TAG, "onActivityCreated: ")
         super.onActivityCreated(savedInstanceState)
 
-        activity.let{ mactivity = activity!!}
+        activity?.let{ mactivity = it}
 
         Log.d(TAG, "onActivityCreated: activity =  ${activity}")
 
@@ -96,8 +96,8 @@ class MainActivityFragment : Fragment(), OnTaskClickListener, LoaderManager.Load
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         Log.d(TAG, "onLoadFinished: swapCursor")
-        data.let {
-            mViewAdapter.swapCursor(data!!)
+        data?.let {
+            mViewAdapter.swapCursor(it)
         }
 
 

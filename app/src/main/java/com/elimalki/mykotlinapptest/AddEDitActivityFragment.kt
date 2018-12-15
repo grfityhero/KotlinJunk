@@ -89,24 +89,24 @@ class AddEDitActivityFragment : Fragment() {
             when (mMode) {
                 AddEDitActivityFragment.FragmentEditMode.EDIT -> {
 
-                    task.let {
-                        if (mNameTextView.getText().toString() != task?.name) {
+                    task?.let {
+                        if (mNameTextView.getText().toString() != it.name) {
                             values.put(TaskContract.Columns.TASKS_NAME, mNameTextView.getText().toString())
                         }
-                        if (mDescriptionTextView.getText().toString() != task?.description) {
+                        if (mDescriptionTextView.getText().toString() != it.description) {
                             values.put(
                                 TaskContract.Columns.TASKS_DESCRIPTION,
                                 mDescriptionTextView.getText().toString()
                             )
                         }
-                        if (so != task?.sortOrder) {
+                        if (so != it.sortOrder) {
                             values.put(TaskContract.Columns.TASKS_SORTORDER, so)
                         }
 
                         //updating task
                         Log.d(TAG, "onClick: updating  existing task ")
                         if (values.size() > 0) {
-                            contentResolver.update(TaskContract().buildTaskUri(task!!.id), values, null, null)
+                            contentResolver.update(TaskContract().buildTaskUri(it.id), values, null, null)
                         }
                     }
                 }

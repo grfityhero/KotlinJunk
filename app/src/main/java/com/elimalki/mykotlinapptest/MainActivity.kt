@@ -92,6 +92,9 @@ class MainActivity() : AppCompatActivity(),OnTaskClickListener , AddEDitActivity
         val addEditLayout : View = findViewById(R.id.task_detalis_container)
 
 
+
+
+
         if (mTwoPaneMode) {
             mainFragment.setVisibility(View.VISIBLE)
             addEditLayout.setVisibility(View.VISIBLE)

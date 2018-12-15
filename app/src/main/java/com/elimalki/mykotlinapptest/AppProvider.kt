@@ -22,7 +22,7 @@ class AppProvider : ContentProvider() {
         const val TASKS_ID: Int = 101
         const val TIMINGS: Int = 200
         const val TIMINGS_ID: Int = 201
-//        const val DURATIONS: Int = 5
+        //        const val DURATIONS: Int = 5
 //        const val DURATIONS_ID: Int = 6
         const val CONTENT_AUTHORITY: String = "com.elimalki.mykotlinapptest.provider"
         val CONTENT_AUTHORITY_URI: Uri = Uri.parse("content://" + CONTENT_AUTHORITY)
@@ -58,7 +58,7 @@ class AppProvider : ContentProvider() {
     ): Cursor {
 
         Log.d(TAG, "fun query")
-       //test
+        //test
 //        val uriMatcher2 =UriMatcherTest
 //        val reurnedMActher =   uriMatcher2.buildUriMatcher()
 //        val matcher2: Int =  reurnedMActher.match(uri)
@@ -192,7 +192,7 @@ class AppProvider : ContentProvider() {
             Log.d(TAG, "update: notifyChange")
             context!!.contentResolver.notifyChange(uri, null)
         }
-      //  context.contentResolver.notifyChange(uri, null)
+        //  context.contentResolver.notifyChange(uri, null)
         return rowsUpdated
     }
 

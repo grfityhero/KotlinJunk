@@ -109,9 +109,9 @@ init {
 
         val oldCursor = mCursor // mCursor -->> oldCursor
 
-        newCursor.let {
-            mCursor = newCursor!! // newCusor -->> mCursor
-
+        newCursor?.let {
+            mCursor = it // newCusor -->> mCursor
+        }
 
             if (newCursor != null) {
                 //notify about new mCursor
@@ -119,9 +119,8 @@ init {
             } else { // newCursor is null
                 //notify about lack of data set
                 notifyItemRangeRemoved(0, itemCount)
-
             }
-        }
+
         return oldCursor
 
     }
